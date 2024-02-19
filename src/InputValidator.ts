@@ -42,6 +42,17 @@ export function validateCreateCustomerInput(options: createCustomerOptions): cre
     }
 }
 
+export function validateCreateBasketInput(options: createBasketOptions): createBasketOptions {
+    if (!options.customerId) {
+        console.warn(chalk.redBright("customerId is required."))
+        killAndExit()
+    }
+
+    return {
+        "customerId": options.customerId
+    }
+}
+
 function killAndExit() {
     console.error(chalk.red("Input not valid! Exiting."))
     process.exit()
@@ -63,4 +74,8 @@ export type createCustomerOptions = {
     postCode: String;
     email: String;
     phoneNumber: String;
+}
+
+export type createBasketOptions = {
+    customerId: String;
 }

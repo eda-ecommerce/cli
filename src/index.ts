@@ -7,15 +7,17 @@ import * as console from "console"
 import {requireModule} from "./Helpers.js"
 import {loadEnvFile} from "./Env.js"
 import {
+    createBasketOptions,
     createCustomerOptions,
     createOfferingOptions,
-    createProductOptions, validateCreateCustomerInput,
+    createProductOptions, validateCreateBasketInput, validateCreateCustomerInput,
     validateCreateOfferingInput,
     validateCreateProductInput
 } from "./InputValidator.js"
 import {createNewProduct} from "./eda-handlers/ProductHandler.js"
 import {createNewOffering} from "./eda-handlers/OfferingHandler.js"
 import {createNewCustomer} from "./eda-handlers/CustomerHandler.js"
+import {createNewBasket} from "./eda-handlers/BasketHandler.js"
 
 const packagejson = requireModule("../package.json")
 
@@ -129,7 +131,23 @@ program.command("create-customer")
     })
 
 
-// TODO: Choose to act on behalf of a specific customer
+program.command("create-basket")
+    .summary("Create a new basket")
+    .description("Create a new basket in the EDA-Ecommerce system")
+    .addOption(
+        new commander.Option(
+            "-i --customerId <string>",
+            "Customer UUID"
+        )
+    )
+    .action(async (options: createBasketOptions) => {
+        options = validateCreateBasketInput(options)
+        await createNewBasket(options)
+    })
+
+
+
+
 // TODO: Get all Offerings and put some into basket
 // TODO: Checkout basket
 // TODO: Pay
