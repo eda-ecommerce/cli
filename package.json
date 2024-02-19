@@ -1,6 +1,6 @@
 {
   "name": "@eda-ecommerce/eda-ecommerce-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A cli tool to interact with the eda-ecommerce project",
   "main": "bin/index.js",
   "type": "module",
