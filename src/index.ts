@@ -97,8 +97,20 @@ program.command("create-customer")
     )
     .addOption(
         new commander.Option(
-            '-a --address <string>',
-            'Address'
+            '-s --street <string>',
+            'Street'
+        )
+    )
+    .addOption(
+        new commander.Option(
+            '-n --number <string>',
+            'Street Number'
+        )
+    )
+    .addOption(
+        new commander.Option(
+            '-c --postCode <string>',
+            'Post Code'
         )
     )
     .addOption(

@@ -7,7 +7,17 @@ export async function createNewCustomer(options: createCustomerOptions) {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(options)
+        body: JSON.stringify({
+            "firstName": options.firstName,
+            "lastName": options.lastName,
+            "address": {
+                "street": options.street,
+                "number": options.number,
+                "postCode": options.postCode,
+            },
+            "email": options.email,
+            "phoneNumber": options.phoneNumber
+        })
     })
 
     if (response.status !== 201) throw new Error("customer creation failed: " + response.status)

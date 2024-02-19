@@ -26,15 +26,17 @@ export function validateCreateOfferingInput(options: createOfferingOptions): cre
 }
 
 export function validateCreateCustomerInput(options: createCustomerOptions): createCustomerOptions {
-    if (!options.firstName || !options.lastName || !options.address || !options.email || !options.phoneNumber) {
-        console.warn(chalk.redBright("firstName, lastName, address, email and phoneNumber are required."))
+    if (!options.firstName || !options.lastName || !options.street || !options.number || !options.postCode || !options.email || !options.phoneNumber) {
+        console.warn(chalk.redBright("firstName, lastName, street, number, postCode, email and phoneNumber are required."))
         killAndExit()
     }
 
     return {
         "firstName": options.firstName,
         "lastName": options.lastName,
-        "address": options.address,
+        "street": options.street,
+        "number": options.number,
+        "postCode": options.postCode,
         "email": options.email,
         "phoneNumber": options.phoneNumber
     }
@@ -56,7 +58,9 @@ export type createOfferingOptions = {
 export type createCustomerOptions = {
     firstName: String;
     lastName: String;
-    address: String;
+    street: String;
+    number: String;
+    postCode: String;
     email: String;
     phoneNumber: String;
 }
