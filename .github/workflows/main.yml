@@ -10,10 +10,6 @@ jobs:
   publish-build-push:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      packages: write
-
     steps:
       - uses: actions/checkout@v4
 
@@ -38,6 +34,5 @@ jobs:
             @semantic-release/git
             @semantic-release/github
         env:
-          persist-credentials: false
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
