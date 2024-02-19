@@ -8,17 +8,22 @@ import {requireModule} from "./Helpers.js"
 import {loadEnvFile} from "./Env.js"
 import {
     addOfferingToBasketOptions,
+    checkoutBasketOptions,
     createBasketOptions,
     createCustomerOptions,
     createOfferingOptions,
-    createProductOptions, validateAddOfferingToBasketInput, validateCreateBasketInput, validateCreateCustomerInput,
+    createProductOptions,
+    validateAddOfferingToBasketInput,
+    validateCheckoutBasketInput,
+    validateCreateBasketInput,
+    validateCreateCustomerInput,
     validateCreateOfferingInput,
     validateCreateProductInput
 } from "./InputValidator.js"
 import {createNewProduct} from "./eda-handlers/ProductHandler.js"
 import {createNewOffering} from "./eda-handlers/OfferingHandler.js"
 import {createNewCustomer} from "./eda-handlers/CustomerHandler.js"
-import {addOfferingToBasket, createNewBasket} from "./eda-handlers/BasketHandler.js"
+import {addOfferingToBasket, checkoutBasket, createNewBasket} from "./eda-handlers/BasketHandler.js"
 
 const packagejson = requireModule("../package.json")
 
@@ -173,10 +178,21 @@ program.command("add-offering-to-basket")
     })
 
 
+program.command("checkout-basket")
+    .summary("Checkout basket")
+    .description("Checkout basket in the EDA-Ecommerce system")
+    .addOption(
+        new commander.Option(
+            "-b --basketId <string>",
+            "Basket UUID"
+        )
+    )
+    .action(async (options: checkoutBasketOptions) => {
+        options = validateCheckoutBasketInput(options)
+        await checkoutBasket(options)
+    })
 
 
-// TODO: Put offering into basket
-// TODO: Checkout basket
 // TODO: Pay
 
 program.parse()

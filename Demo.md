@@ -7,3 +7,5 @@
 `eda-ecommerce-cli create-basket --customerId <id>`
 
 `eda-ecommerce-cli add-offering-to-basket --basketId <id> --offeringId <id> --quantity 2`
+
+`eda-ecommerce-cli checkout-basket --basketId <id>`
