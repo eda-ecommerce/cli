@@ -13,9 +13,9 @@ import {
     validateCreateOfferingInput,
     validateCreateProductInput
 } from "./InputValidator.js"
-import {createNewProduct} from "./ProductHandler.js"
-import {createNewOffering} from "./OfferingHandler.js"
-import {createNewCustomer} from "./CustomerHandler.js"
+import {createNewProduct} from "./eda-handlers/ProductHandler.js"
+import {createNewOffering} from "./eda-handlers/OfferingHandler.js"
+import {createNewCustomer} from "./eda-handlers/CustomerHandler.js"
 
 const packagejson = requireModule("../package.json")
 
@@ -49,7 +49,6 @@ program.command("create-product")
     )
     .action(async (options: createProductOptions) => {
         options = validateCreateProductInput(options)
-        console.log("Creating product with options:", options)
         await createNewProduct(options)
     })
 
@@ -76,7 +75,6 @@ program.command("create-offering")
     )
     .action(async (options: createOfferingOptions) => {
         options = validateCreateOfferingInput(options)
-        console.log("Creating offering with options:", options)
         await createNewOffering(options)
     })
 
@@ -127,7 +125,6 @@ program.command("create-customer")
     )
     .action(async (options: createCustomerOptions) => {
         options = validateCreateCustomerInput(options)
-        console.log("Creating customer with options:", options)
         await createNewCustomer(options)
     })
 

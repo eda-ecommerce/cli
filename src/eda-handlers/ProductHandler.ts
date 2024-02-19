@@ -1,7 +1,10 @@
-import {createProductOptions} from "./InputValidator.js"
+import {createProductOptions} from "../InputValidator.js"
+import console from "console"
 
 
 export async function createNewProduct(options: createProductOptions) {
+    console.log("Creating product with options:", options)
+
     const response = await fetch(process.env['PRODUCT_URL'] + "products", {
         method: "POST",
         headers: {
