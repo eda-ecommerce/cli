@@ -7,8 +7,12 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  publish-build-push:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - uses: actions/checkout@v4
@@ -24,24 +28,6 @@ jobs:
 
       - name: Build with typescript
         run: npm run build
-
-      - uses: actions/upload-artifact@master
-        with:
-          name: buildfiles
-          path: ./
-
-  publish:
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-      packages: write
-
-    steps:
-      - uses: actions/download-artifact@master
-        with:
-          name: buildfiles
-          path: ./
 
       - name: Semantic Release
         if: ${{ github.event_name == 'push' }}
