@@ -37,7 +37,7 @@ program.command("create-product")
         )
     )
     .action(async (options: createProductOptions) => {
-        validateCreateProductInput(options)
+        options = validateCreateProductInput(options)
         console.log("Creating product with options:", options)
         await createNewProduct(options)
     })
