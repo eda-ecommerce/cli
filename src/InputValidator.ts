@@ -27,7 +27,7 @@ export function validateCreateOfferingInput(options: createOfferingOptions): cre
 
 export function validateCreateCustomerInput(options: createCustomerOptions): createCustomerOptions {
     if (!options.firstName || !options.lastName || !options.address || !options.email || !options.phoneNumber) {
-        console.warn(chalk.redBright("id, firstName, lastName, address, email and phoneNumber are required."))
+        console.warn(chalk.redBright("firstName, lastName, address, email and phoneNumber are required."))
         killAndExit()
     }
 
