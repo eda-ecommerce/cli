@@ -25,6 +25,21 @@ export function validateCreateOfferingInput(options: createOfferingOptions): cre
     }
 }
 
+export function validateCreateCustomerInput(options: createCustomerOptions): createCustomerOptions {
+    if (!options.firstName || !options.lastName || !options.address || !options.email || !options.phoneNumber) {
+        console.warn(chalk.redBright("id, firstName, lastName, address, email and phoneNumber are required."))
+        killAndExit()
+    }
+
+    return {
+        "firstName": options.firstName,
+        "lastName": options.lastName,
+        "address": options.address,
+        "email": options.email,
+        "phoneNumber": options.phoneNumber
+    }
+}
+
 function killAndExit() {
     console.error(chalk.red("Input not valid! Exiting."))
     process.exit()
@@ -36,4 +51,12 @@ export type createOfferingOptions = {
     "productId": String;
     "quantity": Number;
     "price": Number;
+}
+
+export type createCustomerOptions = {
+    firstName: String;
+    lastName: String;
+    address: String;
+    email: String;
+    phoneNumber: String;
 }

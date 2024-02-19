@@ -7,13 +7,15 @@ import * as console from "console"
 import {requireModule} from "./Helpers.js"
 import {loadEnvFile} from "./Env.js"
 import {
+    createCustomerOptions,
     createOfferingOptions,
-    createProductOptions,
+    createProductOptions, validateCreateCustomerInput,
     validateCreateOfferingInput,
     validateCreateProductInput
 } from "./InputValidator.js"
 import {createNewProduct} from "./ProductHandler.js"
 import {createNewOffering} from "./OfferingHandler.js"
+import {createNewCustomer} from "./CustomerHandler.js"
 
 const packagejson = requireModule("../package.json")
 
@@ -78,8 +80,46 @@ program.command("create-offering")
         await createNewOffering(options)
     })
 
+program.command("create-customer")
+    .summary("Create a new offering")
+    .description("Create a new offering in the EDA-Ecommerce system")
+    .addOption(
+        new commander.Option(
+            "-f --firstName <string>",
+            "First Name"
+        )
+    )
+    .addOption(
+        new commander.Option(
+            '-l --lastName <string>',
+            'Last Name'
+        )
+    )
+    .addOption(
+        new commander.Option(
+            '-a --address <string>',
+            'Address'
+        )
+    )
+    .addOption(
+        new commander.Option(
+            '-e --email <string>',
+            'Email'
+        )
+    )
+    .addOption(
+        new commander.Option(
+            '-p --phoneNumber <string>',
+            'Phone Number'
+        )
+    )
+    .action(async (options: createCustomerOptions) => {
+        options = validateCreateCustomerInput(options)
+        console.log("Creating customer with options:", options)
+        await createNewCustomer(options)
+    })
 
-// TODO: Create customer
+
 // TODO: Choose to act on behalf of a specific customer
 // TODO: Get all Offerings and put some into basket
 // TODO: Checkout basket
