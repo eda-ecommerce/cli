@@ -12,9 +12,28 @@ export function validateCreateProductInput(options: createProductOptions): creat
     }
 }
 
+export function validateCreateOfferingInput(options: createOfferingOptions): createOfferingOptions {
+    if (!options.productId || !options.price || !options.quantity) {
+        console.warn(chalk.redBright("productId, price and quantity are required."))
+        killAndExit()
+    }
+
+    return {
+        "productId": options.productId,
+        "price": Number(options["price"]),
+        "quantity": Number(options["quantity"])
+    }
+}
+
 function killAndExit() {
     console.error(chalk.red("Input not valid! Exiting."))
     process.exit()
 }
 
 export type createProductOptions = {color: String; description: String}
+
+export type createOfferingOptions = {
+    "productId": String;
+    "quantity": Number;
+    "price": Number;
+}

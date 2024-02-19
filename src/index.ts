@@ -6,8 +6,14 @@ import {program} from "commander"
 import * as console from "console"
 import {requireModule} from "./Helpers.js"
 import {loadEnvFile} from "./Env.js"
-import {createProductOptions, validateCreateProductInput} from "./InputValidator.js"
+import {
+    createOfferingOptions,
+    createProductOptions,
+    validateCreateOfferingInput,
+    validateCreateProductInput
+} from "./InputValidator.js"
 import {createNewProduct} from "./ProductHandler.js"
+import {createNewOffering} from "./OfferingHandler.js"
 
 const packagejson = requireModule("../package.json")
 
@@ -42,7 +48,34 @@ program.command("create-product")
         await createNewProduct(options)
     })
 
-// TODO: Create Offering
+program.command("create-offering")
+    .summary("Create a new offering")
+    .description("Create a new offering in the EDA-Ecommerce system")
+    .addOption(
+        new commander.Option(
+            "-i --productId <string>",
+            "Product UUID"
+        )
+    )
+    .addOption(
+        new commander.Option(
+            '-q --quantity <string>',
+            'Quantity of the product in the offering'
+        )
+    )
+    .addOption(
+        new commander.Option(
+            '-p --price <string>',
+            'Price of the offering'
+        )
+    )
+    .action(async (options: createOfferingOptions) => {
+        options = validateCreateOfferingInput(options)
+        console.log("Creating offering with options:", options)
+        await createNewOffering(options)
+    })
+
+
 // TODO: Create customer
 // TODO: Choose to act on behalf of a specific customer
 // TODO: Get all Offerings and put some into basket
