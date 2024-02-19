@@ -17,7 +17,7 @@
     "dev": "tsc --watch"
   },
   "repository": {
-    "url": "github:eda-ecommerce/cli"
+    "url": "github:eda-ecommerce"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
