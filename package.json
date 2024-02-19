@@ -1,0 +1,37 @@
+{
+  "name": "eda-ecommerce-cli",
+  "version": "1.0.0",
+  "description": "A cli tool to interact with the eda-ecommerce project",
+  "main": "bin/index.js",
+  "type": "module",
+  "bin": {
+    "eda-ecommerce-cli": "bin/index.js"
+  },
+  "files": [
+    "bin",
+    "assets",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "author": "Oliver Wichmann",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "ora": "^8.0.1",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.5.8",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
