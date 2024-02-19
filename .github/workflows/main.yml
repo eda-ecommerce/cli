@@ -30,7 +30,6 @@ jobs:
         id: semantic-release
         with:
           extra_plugins: |
-            semantic-release-plugin-replace-version-in-files
             @semantic-release/git
             @semantic-release/github
         env:

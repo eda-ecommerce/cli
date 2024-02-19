@@ -6,15 +6,6 @@
     "@semantic-release/npm",
     "@semantic-release/github",
     [
-      "semantic-release-plugin-replace-version-in-files",
-      {
-        "files": [
-          "**/package.json"
-        ],
-        "placeholder": "${lastRelease.version}"
-      }
-    ],
-    [
       "@semantic-release/git",
       {
         "assets": [
