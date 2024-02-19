@@ -1,4 +1,4 @@
-import {createBasketOptions, } from "../InputValidator.js"
+import {addOfferingToBasketOptions, createBasketOptions,} from "../InputValidator.js"
 
 
 export async function createNewBasket(options: createBasketOptions) {
@@ -17,4 +17,27 @@ export async function createNewBasket(options: createBasketOptions) {
     const customerResponse = await response.json() as {shoppingBasketId: string}
 
     console.log(`basket created successfully. ID: ${customerResponse.shoppingBasketId}`)
+}
+
+export async function addOfferingToBasket(options: addOfferingToBasketOptions) {
+    const body = {
+        "offeringID": options.offeringId,
+        "quantity": options.quantity
+    }
+
+    console.log(`Adding offering ${options.offeringId} into basket ${options.basketId} with the following data: `, body)
+
+    const response = await fetch(process.env['BASKET_URL'] + "shoppingBasket/" + options.basketId + "/addOffering", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body)
+    })
+
+    if (response.status !== 201) throw new Error("Adding offering to basket failed: " + response.status)
+
+    const customerResponse = await response.json()
+
+    console.log(`Offering added to Basket successfully. Basket now looks like this:`, customerResponse)
 }

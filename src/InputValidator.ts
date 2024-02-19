@@ -53,6 +53,19 @@ export function validateCreateBasketInput(options: createBasketOptions): createB
     }
 }
 
+export function validateAddOfferingToBasketInput(options: addOfferingToBasketOptions): addOfferingToBasketOptions {
+    if (!options.basketId || !options.offeringId || !options.quantity) {
+        console.warn(chalk.redBright("basketId, offeringId and quantity are required."))
+        killAndExit()
+    }
+
+    return {
+        "basketId": options.basketId,
+        "offeringId": options.offeringId,
+        "quantity": Number(options.quantity)
+    }
+}
+
 function killAndExit() {
     console.error(chalk.red("Input not valid! Exiting."))
     process.exit()
@@ -78,4 +91,10 @@ export type createCustomerOptions = {
 
 export type createBasketOptions = {
     customerId: String;
+}
+
+export type addOfferingToBasketOptions = {
+    basketId: String;
+    offeringId: String;
+    quantity: Number;
 }
