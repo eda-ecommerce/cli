@@ -10,7 +10,7 @@ export async function createNewProduct(options: createProductOptions) {
         body: JSON.stringify(options)
     })
 
-    if (response.status !== 201) throw new Error("Product creation failed")
+    if (response.status !== 201) throw new Error("Product creation failed: " + response.status)
 
     const location = response.headers.get("Location")
     const productId = location?.split("/").pop()

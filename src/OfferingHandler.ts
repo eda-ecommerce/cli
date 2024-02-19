@@ -10,7 +10,7 @@ export async function createNewOffering(options: createOfferingOptions) {
         body: JSON.stringify(options)
     })
 
-    if (response.status !== 201) throw new Error("Offering creation failed: " + response.status,)
+    if (response.status !== 201) throw new Error("Offering creation failed: " + response.status)
 
     const location = response.headers.get("Location")
     const productId = location?.split("/").pop()
