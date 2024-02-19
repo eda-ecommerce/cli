@@ -17,15 +17,18 @@ import {createNewOffering} from "./OfferingHandler.js"
 
 const packagejson = requireModule("../package.json")
 
-console.log(chalk.yellow.bold("EDA-Ecommerce CLI Tool"))
-console.log(`Version ${packagejson.version}`)
-
 loadEnvFile()
 
 program
     .name(Object.keys(packagejson.bin)[0])
     .description(packagejson.description)
     .version(packagejson.version)
+    .action(() => {
+        console.log(chalk.yellow.bold("EDA-Ecommerce CLI Tool"))
+        console.log(`Version ${packagejson.version}`)
+
+        program.help()
+    })
 
 program.command("create-product")
     .summary("Create a new product")
