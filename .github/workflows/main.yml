@@ -1,0 +1,38 @@
+name: CI Workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  publish-build-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+
+      - run: npm ci
+
+      - name: Build with typescript
+        run: npm run build
+
+      - name: Semantic Release
+        if: ${{ github.event_name == 'push' }}
+        uses: cycjimmy/semantic-release-action@v4
+        id: semantic-release
+        with:
+          extra_plugins: |
+            semantic-release-plugin-replace-version-in-files
+            @semantic-release/git
+            @semantic-release/github
+        env:
+          persist-credentials: false
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

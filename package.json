@@ -1,6 +1,6 @@
 {
   "name": "eda-ecommerce-cli",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A cli tool to interact with the eda-ecommerce project",
   "main": "bin/index.js",
   "type": "module",
@@ -15,6 +15,10 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eda-ecommerce/cli.git"
   },
   "author": "Oliver Wichmann",
   "license": "ISC",
