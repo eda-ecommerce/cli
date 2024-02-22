@@ -42,8 +42,6 @@ export async function addOfferingToBasket(options: addOfferingToBasketOptions) {
     console.log(`Offering added to Basket successfully. Basket now looks like this:`, customerResponse)
 }
 
-
-
 export async function checkoutBasket(options: checkoutBasketOptions) {
     console.log(`Checking out basket ${options.basketId}`)
 
@@ -54,7 +52,7 @@ export async function checkoutBasket(options: checkoutBasketOptions) {
         },
     })
 
-    if (response.status !== 201) throw new Error("Checking out basket failed: " + response.status)
+    if (response.status !== 200) throw new Error("Checking out basket failed: " + response.status)
 
     console.log(`Checked out Basket successfully.`)
 }
