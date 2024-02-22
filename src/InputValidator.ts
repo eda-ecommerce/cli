@@ -77,6 +77,17 @@ export function validateCheckoutBasketInput(options: checkoutBasketOptions): che
     }
 }
 
+export function validatePayInput(options: payOptions): payOptions {
+    if (!options.paymentId) {
+        console.warn(chalk.redBright("paymentId is required."))
+        killAndExit()
+    }
+
+    return {
+        "paymentId": options.paymentId
+    }
+}
+
 function killAndExit() {
     console.error(chalk.red("Input not valid! Exiting."))
     process.exit()
@@ -112,5 +123,9 @@ export type addOfferingToBasketOptions = {
 
 export type checkoutBasketOptions = {
     basketId: String;
+}
+
+export type payOptions = {
+    paymentId: String;
 }
 

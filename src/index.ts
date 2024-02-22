@@ -12,18 +12,19 @@ import {
     createBasketOptions,
     createCustomerOptions,
     createOfferingOptions,
-    createProductOptions,
+    createProductOptions, payOptions,
     validateAddOfferingToBasketInput,
     validateCheckoutBasketInput,
     validateCreateBasketInput,
     validateCreateCustomerInput,
     validateCreateOfferingInput,
-    validateCreateProductInput
+    validateCreateProductInput, validatePayInput
 } from "./InputValidator.js"
 import {createNewProduct} from "./eda-handlers/ProductHandler.js"
 import {createNewOffering} from "./eda-handlers/OfferingHandler.js"
 import {createNewCustomer} from "./eda-handlers/CustomerHandler.js"
 import {addOfferingToBasket, checkoutBasket, createNewBasket} from "./eda-handlers/BasketHandler.js"
+import {pay} from "./eda-handlers/PaymentHandler.js"
 
 const packagejson = requireModule("../package.json")
 
@@ -192,8 +193,19 @@ program.command("checkout-basket")
         await checkoutBasket(options)
     })
 
-
-// TODO: Pay
+program.command("pay")
+    .summary("Pay")
+    .description("Pay in the EDA-Ecommerce system")
+    .addOption(
+        new commander.Option(
+            "-p --paymentId <string>",
+            "Pay UUID"
+        )
+    )
+    .action(async (options: payOptions) => {
+        options = validatePayInput(options)
+        await pay(options)
+    })
 
 program.parse()
 
