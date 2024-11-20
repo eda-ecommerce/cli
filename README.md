@@ -1,7 +1,7 @@
 # EDA-Ecommerce CLI
 
 ## Usage:
-1. Set the "@eda-ecommerce" registry (e.g. `echo @eda-ecommerce:registry=https://npm.pkg.github.com/ >> ~/.npmrc` `echo //https://npm.pkg.github.com/:_authToken=<GITHUB TOKEN WITH PACKAGE REGISTRY ACCESS> >> ~/.npmrc`) **or** add it into your `~/.bunfig.toml`:
+1. Set the "@eda-ecommerce" registry (e.g. `echo @eda-ecommerce:registry=https://npm.pkg.github.com/ >> ~/.npmrc` `echo //npm.pkg.github.com/:_authToken=<GITHUB TOKEN WITH PACKAGE REGISTRY ACCESS> >> ~/.npmrc`) **or** add it into your `~/.bunfig.toml`:
     ```
     [install.scopes]
     "@eda-ecommerce" = { token = "<GITHUB TOKEN WITH PACKAGE REGISTRY ACCESS>", url = "https://npm.pkg.github.com/" }
