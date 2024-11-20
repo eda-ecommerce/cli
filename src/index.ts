@@ -25,6 +25,7 @@ import {createNewOffering} from "./eda-handlers/OfferingHandler.js"
 import {createNewCustomer} from "./eda-handlers/CustomerHandler.js"
 import {addOfferingToBasket, checkoutBasket, createNewBasket} from "./eda-handlers/BasketHandler.js"
 import {pay} from "./eda-handlers/PaymentHandler.js"
+import {produceOrderRequestedEvent} from "./eda-handlers/OrderHandler.js"
 
 const packagejson = requireModule("../package.json")
 
@@ -206,6 +207,14 @@ program.command("pay")
         options = validatePayInput(options)
         await pay(options)
     })
+
+program.command("request-random-order")
+    .summary("Request a random order")
+    .description("This will create a new product, offering, customer, basket, add the offering to the basket and checkout the basket in order to produce a new order requested event.")
+    .action(async () => {
+        await produceOrderRequestedEvent()
+    })
+
 
 program.parse()
 

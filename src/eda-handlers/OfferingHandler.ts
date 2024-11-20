@@ -16,7 +16,9 @@ export async function createNewOffering(options: createOfferingOptions) {
     if (response.status !== 201) throw new Error("Offering creation failed: " + response.status)
 
     const location = response.headers.get("Location")
-    const productId = location?.split("/").pop()
+    const offeringId = location?.split("/").pop()
 
-    console.log(`Offering created successfully. ID: ${productId}`)
+    console.log(`Offering created successfully. ID: ${offeringId}`)
+
+    return offeringId
 }

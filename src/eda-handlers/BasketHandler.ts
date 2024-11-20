@@ -17,6 +17,8 @@ export async function createNewBasket(options: createBasketOptions) {
     const customerResponse = await response.json() as {shoppingBasketId: string}
 
     console.log(`basket created successfully. ID: ${customerResponse.shoppingBasketId}`)
+
+    return customerResponse.shoppingBasketId
 }
 
 export async function addOfferingToBasket(options: addOfferingToBasketOptions) {

@@ -19,4 +19,6 @@ export async function createNewProduct(options: createProductOptions) {
     const productId = location?.split("/").pop()
 
     console.log(`Product created successfully. ID: ${productId}`)
+
+    return productId
 }

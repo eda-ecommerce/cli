@@ -1,4 +1,4 @@
-import {createCustomerOptions, createProductOptions} from "../InputValidator.js"
+import {createCustomerOptions} from "../InputValidator.js"
 
 
 export async function createNewCustomer(options: createCustomerOptions) {
@@ -29,4 +29,6 @@ export async function createNewCustomer(options: createCustomerOptions) {
     const customerResponse = await response.json() as {id: string}
 
     console.log(`customer created successfully. ID: ${customerResponse.id}`)
+
+    return customerResponse.id
 }
